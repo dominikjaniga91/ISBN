@@ -1,0 +1,40 @@
+package Listy;
+import java.util.*;
+public class Listy {
+
+    public static void main(String[] args) {
+        Codes codes = new Codes();
+        codes.generateCode();
+    }
+}
+
+class Codes {
+
+    // wzór: suma = 1*d1 + 2*d2 +3*d3 + ... + 9*d9 suma kontrolna = suma%11
+    void generateCode(){
+
+        int[] numberTable = new int[9];
+        for(int i=0; i<numberTable.length; i++) { // generujemy tabelę od 1-9
+            numberTable[i]=i+1;
+        }
+
+        int[] randomNumbers = new int[9]; // tworzymy tabelę 9-ciu elementów
+        int suma = 0;
+
+        randomNumbers[0] = 0; // 0 czyli kraj anglojęzyczny
+            for(int x=1; x<randomNumbers.length; x++) {
+                randomNumbers[x] = (int) (Math.random() * 9);  // generujemy losowe numery z zakresu od 1 do 9 i przypisujemy do elementów tablicy z wyjątkiem elementu 0
+                suma += randomNumbers[x] * numberTable[x];  // mnożymy numery przez siebie oraz powiększamy wartość sumy
+          }
+        int liczbaKontrolna = suma%11;
+        int x=0;  // można wyświetlić po prostu pisząc 13 razy System.out.print
+        while(x<randomNumbers.length) {
+            System.out.print(randomNumbers[x]);
+            if (x == 0 || x == 3 || x == 8){
+               System.out.print("-");
+            }
+                x++;
+        }
+        System.out.println(liczbaKontrolna);
+    }
+}
